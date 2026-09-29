@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>[Hayden O'Rourke - CS-212 - Assignment 5]</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding-top: 100px;
+            padding-bottom: 200px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 15px;
+            gap: 5px;
+        }
+
+        nav h3 {
+            flex-grow: 1;
+            margin: 5px;
+            text-align: center;
+        }
+
+        nav a {
+            flex-grow: 1;
+            text-align: center;
+            padding: 10px;
+        }
+
+        #resume {
+            flex-grow: 1;
+            text-align: center;
+            margin: 5px;
+        }
+
+        #resume a {
+            display: inline-block;
+            background-color: lightgray;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, border-radius 0.3s, box-shadow 0.3s;
+        }
+
+        #resume a:hover {
+            background-color: gray;
+            border-radius: 10px;
+            box-shadow: 2px 2px 5px gray;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            flex-grow: 1;
+            flex-shrink: 1;
+            padding: 20px;
+            margin: 0 10px;
+            gap: 20px;
+        }
+
+        #summary {
+            font-size: 16px;
+            margin: 10px;
+            padding: 10px;
+            flex-grow: 1;
+            flex-shrink: 1;
+        }
+
+        #education {
+            font-size: 16px;
+            margin: 10px;
+            padding: 10px;
+            flex-grow: 1;
+            flex-shrink: 1;
+        }
+
+        #experience {
+            font-size: 16px;
+            margin: 10px;
+            padding: 10px;
+            flex-grow: 1;
+            flex-shrink: 1;
+        }
+
+        #skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 10px;
+            flex-grow: 1;
+            flex-shrink: 1;
+        }
+
+        #skills h2 {
+            grid-column: 1 / -1;
+        }
+
+        #skills div {
+            padding: 10px;
+        }
+
+        #skills div:first-of-type {
+            grid-column: span 2;
+        }
+
+        #skills li {
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        #skills li:hover {
+            transform: scale(1.1);
+            background-color: lightgray;
+            border-radius: 5px;
+        }
+
+        #projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 10px;
+            flex-grow: 1;
+            flex-shrink: 1;
+        }
+
+        #projects h2 {
+            grid-column: 1 / -1;
+        }
+
+        #projects div {
+            padding: 10px;
+            overflow: auto;
+        }
+
+        #projects div:first-of-type {
+            grid-column: span 2;
+        }
+
+        #projects img {
+            width: 300px;
+            max-width: 100%;
+            margin: 10px;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        #projects img:hover {
+            opacity: 0.7;
+            transform: scale(1.05);
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 180px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: white;
+            flex-shrink: 0;
+        }
+
+        #contact {
+            margin-left: 20px;
+        }
+
+        #contact h2 {
+            margin: 10px 0;
+        }
+
+        #contact p {
+            margin: 8px 0;
+        }
+
+        table {
+            border: 1px solid black;
+        }
+
+        @media (max-width: 1024px) {
+            #skills {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+
+            #projects {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            #skills div:first-of-type,
+            #projects div:first-of-type {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 120px;
+                padding-bottom: 180px;
+            }
+
+            header {
+                height: 120px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+            }
+
+            nav h3 {
+                width: 100%;
+            }
+
+            nav a {
+                flex-grow: 1;
+                min-width: 100px;
+            }
+
+            main {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            #skills {
+                grid-template-columns: 1fr;
+            }
+
+            #projects {
+                grid-template-columns: 1fr;
+            }
+
+            #skills div:first-of-type,
+            #projects div:first-of-type {
+                grid-column: span 1;
+            }
+
+            footer {
+                height: 180px;
+            }
+
+            #contact {
+                margin-left: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding-top: 130px;
+                padding-bottom: 190px;
+            }
+
+            header {
+                height: 130px;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+
+            header h2 {
+                font-size: 18px;
+            }
+
+            nav {
+                padding: 5px;
+            }
+
+            nav a {
+                min-width: 80px;
+                padding: 5px;
+            }
+
+            main {
+                padding: 5px;
+                margin: 0;
+            }
+
+            #summary,
+            #education,
+            #experience {
+                margin: 5px;
+                padding: 5px;
+            }
+
+            #skills {
+                grid-template-columns: 1fr;
+                padding: 5px;
+            }
+
+            #projects {
+                grid-template-columns: 1fr;
+                padding: 5px;
+            }
+
+            #projects img {
+                width: 45%;
+                margin: 5px;
+            }
+
+            table {
+                width: 100%;
+            }
+
+            footer {
+                height: 190px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Hayden O'Rourke - Assignment 5</h1>
+    <h2>Aspiring Cybersecurity Analyst</h2>
+</header>
+
+<nav>
+    <h3>Navigation</h3>
+
+    <a href="#summary">Summary</a>
+
+    <a href="#education">Education</a>
+
+    <a href="#skills">Skills</a>
+
+    <a href="#projects">Projects</a>
+
+    <a href="#contact">Contact Information</a>
+
+    <div id="resume">
+        <a href="Hayden O'Rourke Tier 2 Desktop Support Resume.pdf" download>
+            Download Resume
+        </a>
+    </div>
+</nav>
+
+<main>
+
+    <section id="summary">
+        <h2>Introduction</h2>
+
+        <p>
+            Hello! My name is Hayden O'Rourke. I'm a sophomore here at NAU,
+            and I am pursuing a major in Cybersecurity. I have a bit of prior
+            experience with HTML through a class that I took in high school,
+            but I'm a bit rusty as it's been a few years. I previously have
+            worked as a Tier 2 Desktop Support for the school, where my role
+            was to image computers and deliver them across campus.
+        </p>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+
+        <div>
+            <h3>Technical Skills</h3>
+
+            <ul>
+                <li>Computer imaging and deployment</li>
+                <li>Hardware troubleshooting</li>
+                <li>Windows Server deployment and management</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Networking</h3>
+
+            <ul>
+                <li>Cisco Packet Tracer</li>
+                <li>Basic Cisco hardware configuration</li>
+                <li>Basic network troubleshooting</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+
+        <div>
+            <h3>Windows Server 2011</h3>
+
+            <p>
+                I purposely worked with older, outdated hardware to get a feel
+                for working with unfamiliar tools.
+            </p>
+
+            <img src="windows-server-logo-01-3622531575.png" width="300">
+
+            <img src="The-branding-has-not-changed-from-Windows-Server-2025-as-of-yet-1817640475.png" width="300">
+        </div>
+
+        <div>
+            <h3>Cisco Packet Tracer</h3>
+
+            <p>
+                CCNA training has given me the skills to configure and deploy
+                Cisco hardware at a basic level.
+            </p>
+
+            <img src="OIP-591332616.jpg" width="300">
+
+            <img src="maxresdefault-2898280502.jpg" width="300">
+        </div>
+    </section>
+
+    <section id="education">
+        <h2>Education</h2>
+
+        <table>
+            <tr>
+                <th>Institution</th>
+                <th>Program/Degree</th>
+                <th>Duration</th>
+            </tr>
+
+            <tr>
+                <td>Northern Arizona University</td>
+                <td>Cybersecurity</td>
+                <td>Current</td>
+            </tr>
+
+            <tr>
+                <td>West-Mec Northwest</td>
+                <td>Technical Education Program</td>
+                <td>High School</td>
+            </tr>
+        </table>
+    </section>
+
+    <section id="experience">
+        <h2>Experience</h2>
+
+        <table>
+            <tr>
+                <th>Company</th>
+                <th>Position</th>
+                <th>Duration</th>
+            </tr>
+
+            <tr>
+                <td>Northern Arizona University</td>
+                <td>Tier 2 Desktop Support</td>
+                <td>Previous Position</td>
+            </tr>
+        </table>
+
+        <p>
+            I worked as a Tier 2 Desktop Support at NAU, which entails the
+            imaging and deployment of computers, delivering them to customers,
+            troubleshooting relevant issues, etc.
+        </p>
+    </section>
+
+</main>
+
+<footer>
+    <div id="contact">
+        <h2>Contact Information</h2>
+
+        <p>
+            Email:
+            <a href="mailto:hjo43@nau.edu">hjo43@nau.edu</a>
+        </p>
+
+        <p>
+            Phone:
+            <a href="tel:6027843549">602-784-3549</a>
+        </p>
+
+        <p>
+            GitHub:
+            <a href="https://github.com/hjo43/cs212">GitHub Profile</a>
+        </p>
+
+        <p>
+            LinkedIn:
+            <a href="https://www.linkedin.com/in/hayden-o-rourke-527332311/">
+                LinkedIn Profile
+            </a>
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
