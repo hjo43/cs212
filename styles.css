@@ -1,0 +1,43 @@
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+header h1,
+header h2 {
+    font-family: 'Orbitron', sans-serif;
+}
+
+header {
+    background: linear-gradient(to right, #123456, #2874a6);
+}
+
+section {
+    margin-bottom: 30px;
+    scroll-margin-top: 20px;
+}
+
+.card {
+    transition: box-shadow 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 4px 10px gray;
+}
+
+.navbar .nav-link:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+footer {
+    background: linear-gradient(to right, #123456, #2874a6);
+}
+
+footer a {
+    color: white;
+}
+
+footer a:hover {
+    color: #add8e6;
+}
